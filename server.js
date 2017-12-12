@@ -44,6 +44,6 @@ var traite_requete = function (req, res) {
 // CREATION ET LANCEMENT DU SERVEUR
 
 mon_serveur = http.createServer(traite_requete);
-port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 5000;
+port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 console.log("listen port " + port);
 mon_serveur.listen(port);
