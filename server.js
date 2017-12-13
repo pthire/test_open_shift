@@ -1,8 +1,9 @@
-"use strict";
+{"host": ip, "port" : port}use strict";
 var connect = require('connect')
 var http = require('http');
 
 var sites = [
+			   /*
 			   {
 				  "domaine" : "cross",
 				  "description" : "Petit jeu de pion",
@@ -43,6 +44,7 @@ var sites = [
 				  "description" : "Jeu de mémoire",
 				  "expose" : true
 			   },
+			   */
 			   {
 				  "domaine" : "web_cadenas",
 				  "description" : "Simulation d'un cadenas",

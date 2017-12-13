@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8" />
+		<title>Eval fin de semestre 2017S</title>
+	</head>
+
+	<style>
+
+	body {
+		max-width: 1000px;
+		padding: 20px;
+		margin: 20px;
+	}
+	h2 {
+		background-color: PaleTurquoise;
+		border: 1px solid black;
+		border-radius: 25px;
+		padding: 10px;
+	}
+	h3 {
+		text-decoration: underline;
+	}
+	p {
+		text-align: justify;
+	}
+	img {
+		border: 1px solid black;
+		padding: 10px;
+		margin: 10px;
+	}
+	.moyen {
+		width: 250px;
+	}
+	.petit {
+		width: 30px;
+	}
+	table {
+		border-collapse: separate;
+		border-spacing: 7px;
+	}
+	td {
+		border: 1px solid black;
+		vertical-align: top;
+		padding: 10px;
+	}
+
+	</style>
+
+	<body>
+
+	<h2>Evaluation fin de semestre 2017S</h2>
+
+	<p>
+	Le site WEB à réaliser simule un cadenas à combinaison. Lorsque le cadenas est ouvert. l'utilisateur peut régler la combinaison secrète (celle qui permet d'ouvrir le cadenas) grâce aux touches "+" et "-". Le cadenas se referme lorsqu'on clique dessus et ne se réouvre que lorsqu'on réaffiche la combinaison secrète (toujours grâce aux touches "+" et "-").
+
+	<h2>Fonctionnement du site</h2>
+
+	<table>
+
+		<tr>
+			<td>
+				L'utilisateur arrive sur le site avec un cadenas ouvert qui affiche la combinaison "0 0 0 0" :
+				<br>
+				<img class="moyen" src="cadenas_0.png">
+				<br>
+				L'utilisateur peut cliquer sur les touches "+" et les touches "-" pour changer les chiffres ...
+
+			</td>
+
+			<td>
+				... afin de régler la combinaison secrète souhaitée (les chiffres varient de 0 à 9).
+				<br/>
+				<img class="moyen" src="cadenas_1.png">
+				<br>
+				Lorsque la combinaison secrète souhaitée est affichée, le joueur clique sur le cadenas ...
+
+			</td>
+
+			</tr></tr>
+
+			<td>
+				... qui se referme. L'utilisateur peut alors modifier les chiffres affiché (toujours en cliquant sur les touches "+" et les touches "-").
+				<br>
+				<img class="moyen" src="cadenas_2.png">
+				<br>
+				Le cadenas doit resté fermé jusqu'à ce que ...
+
+			</td>
+
+			<td>
+				... la combinaison secrète soit à nouveau affichée. Le cadenas est alors à nouveau ouvert.
+				<br>
+				<img class="moyen" src="cadenas_1.png">
+				<br>
+				Après avoir ou non changé la combinaison secrète, l'utilisateur peut alors refermer le cadenas ... etc
+			</td>
+
+		</tr>
+
+	</table>
+
+<div style="page-break-before: always;">
+
+	<h2>Schéma de navigation</h2>
+
+	</p>
+	<img src="schema_nav_cadenas.png">
+
+	<h2>Récapitulatif des maquettes</h2>
+
+	Le site ne comporte qu'une seule page où les éléments dynamiques sont :
+	<ul>
+	<li>le cadenas qui est représenté ouvert ou fermé</li>
+	<li>les 4 chiffres de la combinaison</li>
+	</ul>
+
+	Les pages seront donc obtenues à partir d'un unique modèle HTML <u>qui vous est fourni</u> (voir plus loin) ainsi que les différentes images (touches et cadenas). A vous de modifier ce modèle pour y inclure les marqueurs et les balises correspondant aux requêtes.
+
+<div style="page-break-before: always;">
+
+	<h2>Descriptions des requêtes</h2>
+
+	Tout le fonctionnement du serveur s'articule autour d'un fichier qui contient la représentation JSON d'un objet permettant de décrire l'état du cadenas. Cet objet comporte les propriétés suivantes :
+	<ul>
+	<li>"secret" : la combinaison secrète (celle qui ouvre le cadenas) sous forme d'une liste de 4 chiffres
+	<li>"actuel" : la combinaison affichée sur le cadenas, également sous forme d'une liste de 4 chiffres
+	<li>"etat" : état ouvert ou fermé du cadenas ("o" ou "f")
+	</ul>
+	Nous appellerons ce fichier "cadenas.json".
+	<p/>
+
+	<table>
+
+		<tr>
+			<td>
+
+				Par exemple, lorsque le cadenas est dans cet état ...
+				<br>
+				<img class="moyen" src="cadenas_1.png">
+			</td>
+
+			<td>
+
+				... le fichier "cadenas.json" contient :
+				<pre>
+{
+   "secret" : [ 9, 8, 7, 6 ],
+   "actuel" : [ 3, 1, 4, 1 ],
+   "etat" : "o"
+}
+				</pre>
+
+			</td>
+
+		</tr>
+
+	</table>
+
+	<h3>Requête "commencer"</h3>
+	Cette requête initialise le fichier "cadenas.json" ainsi ...
+
+<pre>
+{
+   "secret" : [ 0, 0, 0, 0 ],
+   "actuel" : [ 0, 0, 0, 0 ],
+   "etat" : "o"
+}
+</pre>
+
+	... puis affiche le cadenas conformément au contenu de ce fichier, c'est à dire en position ouverte avec la combinaison positionnée sur 0 0 0 0.
+
+	<h3>Requête "changer"</h3>
+
+	Cette requête est exécutée lorsque le joueur clique sur l'une des touches "+" ou "-". La combinaison dans le fichier "cadenas.json" (propriété "actuel") est modifiée en conséquence (augmentation ou diminution d'une unité d'un des chiffres de la combinaison).
+
+	<p>L'état du cadenas (propriété "etat") est ensuite éventuellement modifié :
+	<ul>
+	<li>si cette nouvelle combinaison correspond à la combinaison secrète (propriété "secret"), l'état du cadenas (propriété "etat") passe à ouvert ("o")</li>
+	<li>si cette nouvelle combinaison ne correspond pas à la combinaison secrète, l'état du cadenas n'est pas changé (il reste ouvert s'il était déjà ouvert, et fermé s'il était déjà fermé)</li>
+	</ul>
+	Le cadenas est ensuite affiché conformément au contenu du fichier "cadenas.json" :
+	<ul>
+	<li>il est affiché ouvert si la propriété "etat" vaut "o"</li>
+	<li>il est affiché fermé si la propriété "etat" vaut "f"</li>
+	<li>la combinaison est celle indiquée dans la propriété "actuel"</li>
+	</ul>
+	
+	<h3>Requête "fermer"</h3>
+	
+	Cette requête est exécutée lorsque l'utilisateur clique sur l'image du cadenas. Le fichier "cadenas.json" est modifié ainsi :
+	<ul>
+	<li>la propriété "etat" passe à "f" (cadenas fermé)</li>
+	<li>la propriété "actuel" (qui correspond aux chiffres affichés sur le cadenas) est recopiée dans la propriété "secret" (ainsi la combinaison affichée au moment où on ferme le cadenas devient la combinaison secrète)</li>
+	</ul>
+
+	<p>Le cadenas est ensuite affiché selon les informations du fichier "cadenas.json", c'est à dire en position fermée avec une combinaison affichée correspondant à la propriété "actuel".
+
+<div style="page-break-before: always;">
+
+	<h2>Consignes</h2>
+
+	<ol>
+		<li>Placez-vous dans le répertoire <b>/home/eleve/exercices/eval_fs</b></li>
+		<br>
+		<li>Exécutez les commandes shell suivantes :
+			<pre>
+	wget http://itinet.fr/thire/cadenas/sources.zip
+	unzip sources.zip
+			</pre>
+		</li>
+		<li>Examinez le contenu du répertoire avec la commande <b>ls</b>. Vous devez y trouver les fichiers suivants :
+		<p>
+		Les images du cadenas et des touches "+" et "-":
+		<pre>
+	cadenas_ouvert.jpg   cadenas_ferme.jpg   plus.png   moins.png
+		</pre>
+		</pre>
+		Les fichiers sources js (vides !) :
+		<pre>
+	cadenas.js  <i>(le script principal)</i>
+
+	req_commencer.js  req_fermer.js  req_static.js req_erreur.js
+		</pre>
+		Le modèle HTML de la (seule) page du site que vous devez modifier et compléter pour y inclure les marqueurs et les balises nécessaires :
+		<pre>
+	cadenas.html
+		</pre>
+		<p>
+		<b>ATTENTION : NE CRÉEZ AUCUN AUTRE FICHIER ! (hormis le fichier "cadenas.json" créé automatiquement par la requête "req_commencer.js")</b>
+		<p>
+		</li>
+		<li>
+		Lorsque vous aurez terminé, ou lorsqu'on vous le demandera, exécutez la commande shell suivante (en vous assurant que vous êtes bien placé dans le répertoire <b>home/eleve/exercices/eval_fs</b> :
+		<pre>
+	upload
+		</pre>
+	</ol>
+
+	<div style="text-align: center; border: 1px solid black">
+	<br>
+	<b>VOTRE ÉCRAN NE DOIT AFFICHER QUE LA VIRTUAL BOX EN PLEIN ÉCRAN</b>
+	<br>
+	<br>
+	<b>SEUL SITE AUTORISÉ : http://itinet.fr/thire</b>
+	<br>
+	<br>
+	<b>EN AUCUN CAS VOUS N'ÊTES AUTORISÉS À UTILISER L'ENVIRONNEMENT WINDOWS</b>
+	<br>
+	<br>
+	</div>
+
+	</body>
+
+</html>
