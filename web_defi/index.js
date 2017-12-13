@@ -104,10 +104,4 @@ var traite_requete = function (req, res) {
 //-------------------------------------------------------------------------
 
 var mon_serveur = http.createServer(traite_requete);
-var port = 5000;
-console.log("Serveur en ecoute sur port " + port);
-if(process.env.PORT) {
-	exports.app = mon_serveur;
-} else {
-	mon_serveur.listen(port); 
-}
+exports.app = mon_serveur;

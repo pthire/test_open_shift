@@ -28,11 +28,13 @@ var sites = [
 				  "description" : "Demo du processus de défi (mise en relation de 2 joueurs)",
 				  "expose" : true
 			   },
+			   /**********************
 			   {
 				  "domaine" : "web_gm",
 				  "description" : "Générateur d'images",
 				  "expose" : true
 			   },
+			   ************************/
 			   {
 				  "domaine" : "web_rw",
 				  "description" : "Générateur de mots aléatoires",
