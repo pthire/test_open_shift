@@ -1,52 +1,83 @@
-//============================================================================
-// SERVEUR VERSION 3
-// Patrice ThirÃ©
-// 3/10/2015
-//============================================================================
-
 "use strict";
+var connect = require('connect')
+var http = require('http');
 
-var http = require("http");
-var url = require("url");
-var mon_serveur;
-var port;
-var ip;
+var sites = [
+			   {
+				  "domaine" : "cross",
+				  "description" : "Petit jeu de pion",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "jeu_nb",
+				  "description" : "Jeu qui consiste à deviner un nombre",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "distributeur",
+				  "description" : "Simulation d'un distributeur",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "digicode",
+				  "description" : "Simulation d'un digicode",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "web_defi",
+				  "description" : "Demo du processus de défi (mise en relation de 2 joueurs)",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "web_gm",
+				  "description" : "Générateur d'images",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "web_rw",
+				  "description" : "Générateur de mots aléatoires",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "web_memo",
+				  "description" : "Jeu de mémoire",
+				  "expose" : true
+			   },
+			   {
+				  "domaine" : "web_cadenas",
+				  "description" : "Simulation d'un cadenas",
+				  "expose" : false
+			   }
+			];
 
-// FONCTION DE TRAITEMENT D'UNE REQUETE
+var app = connect();
 
-var traite_requete = function (req, res) {
+sites.forEach(function(site) {
+	app.use('/' + site.domaine + '/', function(a,b,next) {console.log("==> " + process.cwd()); process.chdir(process.env.PWD + "/" + site.domaine); next()});
+	app.use('/' + site.domaine + '/', require('./' + site.domaine + '/index').app);
+});
 
-	var requete;
-	var pathname;;
-	var query;
+app.use(function(req, res){
 
-	// RECUPERATION DE L'URL (REQUETE)
+		res.write('<!DOCTYPE html>');
+		res.write('<html>');
 
-	console.log("url reÃ§ue : " + req.url);
+		res.write('<head>');
+		res.write('<meta charset="UTF-8" />');
+		res.write('</head>');
 
-	// ANALYSE DE L'URL (SEPARATION DU PATH ET DE LA QUERY STRING)
+		sites.forEach(function(site) {
+			if(site.expose === true) {
+			res.write('<a href="/' + site.domaine + '/"><button>' + site.description + '</button></a>');
+			res.write('<p/>');
+			}
+		});
 
-	requete = url.parse(req.url, true);
-	pathname = requete.pathname;
-	query = requete.query;
+		res.write('</html>');
 
-	console.log("pathname : " + pathname);
-	console.log("query string (compte) : " + query.compte);
-	console.log("query string (mdp) : " + query.mdp);
+		res.end();
+});
 
-	// ENVOI DE LA REPONSE
-
-	res.writeHead(200, {'Content-Type': 'text/html'});
-	res.write("<html>Bonjour " + query.compte + "</html>");
-	res.end();
-
-};
-
-// CREATION ET LANCEMENT DU SERVEUR
-
-mon_serveur = http.createServer(traite_requete);
-port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
-console.log("listen port " + ip + ":" + port);
-//mon_serveur.listen(port);
-mon_serveur.listen({"host": ip, "port" : port});
+var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
+var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+http.createServer(app).listen(port);
