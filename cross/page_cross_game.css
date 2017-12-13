@@ -1,0 +1,13 @@
+#globale
+{
+	text-align: center;
+}
+#plateau
+{
+	margin: auto;
+	border-collapse: collapse;
+}
+#plateau td
+{
+	border: 1px solid black
+}

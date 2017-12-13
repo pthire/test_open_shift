@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+
+{commentaire}
+
+<form action="clic_analyser" method="GET">
+   <fieldset>
+     <legend>Proposer un nombre entre 1 et 10 (nb secret = {nb_secret})</legend>
+     <input type="text" name="nb_joueur"></p>
+     <input type="hidden" name="joueur" value="{joueur}"></p>
+     <button>Proposer</button>
+   </fieldset>
+</form>
+
+<form action="clic_abandonner" method="GET">
+     <button>Abandonner</button>
+</form>
+
+</body>
+
+</html>

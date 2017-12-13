@@ -1,0 +1,32 @@
+[
+	{
+		"image" : "image_1.jpg",
+		"question" : "Combien de personnages portent une coiffure ?",
+		"reponses" : [
+			"1",
+			"2",
+			"3"
+		],
+		"br" : 1
+	},
+	{
+		"image" : "image_2.jpg",
+		"question" : "Quelle est la couleur de la robe de la jeune fille de droite ?",
+		"reponses" : [
+			"bleu",
+			"rouge",
+			"jaune"
+		],
+		"br" : 2
+	},
+	{
+		"image" : "image_3.jpg",
+		"question" : "Combien reste-t-il d'essence?",
+		"reponses" : [
+			"Le réservoir est vide",
+			"Le réservoir est à moitié plein",
+			"Le réservoir est rempli au 3/4"
+		],
+		"br" : 2
+	}
+]

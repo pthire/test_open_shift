@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8" />
+<h1>Distributeur</h1>
+<strong>Faites votre choix</strong>
+<p/>
+
+<div style="width: 800px; margin: auto; float: left">
+
+<div style="float:left">
+
+<form action="clic_payer" method="get">
+<input type="hidden" name="piece" value="2">
+<input type="image" src="2.jpg">
+</form>
+<form action="clic_payer" method="get">
+<input type="hidden" name="piece" value="1">
+<input type="image" src="1.jpg">
+</form>
+<form action="clic_payer" method="get">
+<input type="hidden" name="piece" value=".5">
+<input type="image" src="50.jpg">
+</form>
+Compte : {compte}
+</div>
+
+<div style="float: right">
+
+<form action="clic_choisir" method="get" style="display: inline">
+<input type="hidden" name="choix" value="coca">
+<input type="image" src="coca.jpg">
+</form>
+
+<form action="clic_choisir" method="get" style="display: inline">
+<input type="hidden" name="choix" value="kinder">
+<input type="image" src="kinder.jpg">
+</form>
+
+<form action="clic_choisir" method="get" style="display: inline">
+<input type="hidden" name="choix" value="chips">
+<input type="image" src="chips.jpg">
+</form>
+
+</div>
+
+
+</form>
+</html>

@@ -1,0 +1,23 @@
+/****************************************************************************
+CSS Digicode
+P.Thiré
+5/1/2014
+****************************************************************************/
+
+img {
+	vertical-align: top;
+	float: left;
+}
+
+span {
+	padding: 5px;
+	border: solid 1px black;
+}
+
+div {
+	padding: 10px;
+}
+
+form {
+	display: inline-block;
+}

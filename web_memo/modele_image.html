@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="refresh" content="5, url=req_questionner?nq={nq}">
+</head>
+
+<body>
+
+<fieldset>
+     <legend><img src="wait.gif"></legend>
+     <h3>Vous avez 5 secondes pour mémoriser cette image</h3>
+	 <img src="{image_question}">
+</fieldset>
+
+<form action="/req_abandonner" method="GET">
+     <button>Abandonner</button>
+</form>
+
+</body>
+
+</html>

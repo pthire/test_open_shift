@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+</head>
+
+<body>
+
+<fieldset>
+     <legend><h3>{texte_question}</h3></legend>
+
+	<form action="req_verifier" method="GET">
+		 <input type="hidden" name="nq" value="{nq}">
+		 <button name="reponse" value="0">{rep0}</button>
+		 <button name="reponse" value="1">{rep1}</button>
+		 <button name="reponse" value="2">{rep2}</button>
+	</form>
+</fieldset>
+
+<form action="req_abandonner" method="GET">
+     <button>Abandonner</button>
+</form>
+
+</body>
+
+</html>
