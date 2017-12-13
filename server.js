@@ -48,7 +48,7 @@ var sites = [
 			   {
 				  "domaine" : "web_cadenas",
 				  "description" : "Simulation d'un cadenas",
-				  "expose" : false
+				  "expose" : true
 			   }
 			];
 
