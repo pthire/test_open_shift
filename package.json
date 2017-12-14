@@ -11,6 +11,8 @@
     "connect": "",
     "remedial": "",
     "gm": "",
+    "pseudomap": "",
+    "yallist": "",
     "mocha": "^2.4.5",
     "mongodb": "^2.1.16",
     "morgan": "^1.7.0",

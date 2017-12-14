@@ -28,13 +28,11 @@ var sites = [
 				  "description" : "Demo du processus de défi (mise en relation de 2 joueurs)",
 				  "expose" : true
 			   },
-			   /**********************
 			   {
 				  "domaine" : "web_gm",
 				  "description" : "Générateur d'images",
 				  "expose" : true
 			   },
-			   ************************/
 			   {
 				  "domaine" : "web_rw",
 				  "description" : "Générateur de mots aléatoires",
@@ -82,4 +80,5 @@ app.use(function(req, res){
 
 var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+console.log("Serveur en écoute sur port " + port);
 http.createServer(app).listen({"host": ip, "port" : port});
