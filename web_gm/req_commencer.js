@@ -17,6 +17,8 @@ function write (base, res) {
 		res.setHeader('Content-Type', 'image/png');
 		stdout.pipe(res);
 	} else {
+		console.log("====" + err);
+		console.log("====" + err.toString());
 		res.writeHead(200, {'Content-Type': 'text/plain'});
 		res.write("Error stream");
 		res.end();
