@@ -82,3 +82,5 @@ var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
 var ip   = process.env.IP   || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
 console.log("Serveur en écoute sur port " + port);
 http.createServer(app).listen({"host": ip, "port" : port});
+
+process.env.MAGICK_CONFIGURE_PATH = process.env.OPENSHIFT_REPO_DIR + "/.im";
