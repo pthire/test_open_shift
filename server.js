@@ -2,9 +2,10 @@
 var connect = require('connect')
 var http = require('http');
 
-process.env.MAGICK_CONFIGURE_PATH = process.env.PWD + "/.im";
-console.log(process.env.MAGICK_CONFIGURE_PATH);
 console.log(process.env);
+process.env.MAGICK_CONFIGURE_PATH = process.env.PWD + "/.im";
+console.log("PWD : " + process.env.PWD);
+console.log("MAG : " + process.env.MAGICK_CONFIGURE_PATH);
 
 var sites = [
 			   {
