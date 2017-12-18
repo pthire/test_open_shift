@@ -2,7 +2,7 @@
 var connect = require('connect')
 var http = require('http');
 
-process.env.MAGICK_CONFIGURE_PATH = process.env.OPENSHIFT_REPO_DIR + "/.im";
+process.env.MAGICK_CONFIGURE_PATH = process.env.PWD + "/.im";
 console.log(process.env.MAGICK_CONFIGURE_PATH);
 console.log(process.env);
 
