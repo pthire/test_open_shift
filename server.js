@@ -4,6 +4,7 @@ var http = require('http');
 
 console.log(process.env);
 process.env.MAGICK_CONFIGURE_PATH = process.env.PWD + "/.im";
+console.log("DIRNAME : " + __dirname);
 console.log("PWD : " + process.env.PWD);
 console.log("MAG : " + process.env.MAGICK_CONFIGURE_PATH);
 
